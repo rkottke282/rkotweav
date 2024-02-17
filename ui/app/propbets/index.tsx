@@ -8,10 +8,11 @@ const GoogleDocReader = () => {
     const loadGoogleDoc = async () => {
       try {
         const worksheetData = JSON.parse(SpreadSheetExample.body).data.raw.data;
-        console.log('here: ' + worksheetData);
+        const bufferData = Buffer.from(worksheetData);
+        const realData = bufferData.toString();
 
         // const content = response.data.body.content.map(item => item.paragraph.elements.map(element => element.textRun.content)).join('\n');
-        setDocContent(worksheetData);
+        setDocContent(realData);
       } catch (error) {
         console.error('Error loading Google Doc:', error);
       }
