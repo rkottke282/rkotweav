@@ -1,0 +1,11 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "outDir": "dist",
+    "strict": false
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": []
+}

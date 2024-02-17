@@ -18,3 +18,11 @@ functions:
     environment:
       GOOGLE_PRIVATE_KEY: ${ssm:GOOGLE_PRIVATE_KEY}
       GOOGLE_SERVICE_ACCOUNT_EMAIL: rkotweav-propbets-backend@propbets.iam.gserviceaccount.com
+
+  calculateParticipantScores:
+    handler: index.handler
+    timeout: 5
+    name: calculateParticipantScores
+    package:
+      artifact: api/calculateParticipantScores/output.zip
+      individually: true

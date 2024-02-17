@@ -1,0 +1,20 @@
+{
+  "name": "calculateparticpantscores",
+  "version": "1.0.0",
+  "description": "turn a csv of propbets data into a json of participant scores",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "zip": "cd dist && zip -r ../output.zip ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.133",
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3"
+  }
+}

@@ -6,10 +6,6 @@ import { JWT } from 'google-auth-library';
 import { GoogleSpreadsheet, type GoogleSpreadsheetWorksheet } from 'google-spreadsheet';
 
 // Set up Google API credentials
-// const auth = new google.auth.GoogleAuth({
-//   // Your authentication configuration here
-// });
-
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
   try {
     const docId: string = event["docId"]; 
