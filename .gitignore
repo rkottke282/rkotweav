@@ -31,3 +31,7 @@ npm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# serverless
+.serverless
+serverless_sdk
