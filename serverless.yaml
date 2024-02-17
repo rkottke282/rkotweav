@@ -1,0 +1,20 @@
+org: rkotweav
+app: rkotweav
+service: rkotweav-application
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  getGoogleDoc:
+    handler: index.handler
+    timeout: 10
+    name: getGoogleDoc
+    package:
+      artifact: api/getGoogleDoc/output.zip
+      individually: true
+    environment:
+      GOOGLE_PRIVATE_KEY: ${ssm:GOOGLE_PRIVATE_KEY}
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: rkotweav-propbets-backend@propbets.iam.gserviceaccount.com
