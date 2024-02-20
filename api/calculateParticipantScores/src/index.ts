@@ -1,26 +1,31 @@
+
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, Context } from 'aws-lambda';
+import SpreadSheetExample from '../test/spreadsheetExample.json';
+import { DSVRowArray, csvParse } from 'd3';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
+    const data: DSVRowArray = parseData(JSON.parse(SpreadSheetExample.body)); //replace this with 'event' when ready to go
+    console.log('data: ', data.columns);
+    //TODO: parse columns  - should be 'Questions' 'Answers' then n. participants
     try {
-        if (event) {
-            return {
-            statusCode: 200,
-            body: JSON.stringify({outcome: "success"})
-            //   body: JSON.stringify({
-            //     title: spreadsheet.title,
-            //     data: {
-            //       format: 'CSV',
-            //       raw: await mainWorksheet.downloadAsCSV()
-            //     }
-            //   }),
-            };
-        } else {
-            return {
-            statusCode: 404,
-            body: JSON.stringify(`Unable to load spreadsheet.`),
-            };
-        }
-      
+      if (event) {
+          return {
+          statusCode: 200,
+          body: JSON.stringify({outcome: "success"})
+          //   body: JSON.stringify({
+          //     title: spreadsheet.title,
+          //     data: {
+          //       format: 'CSV',
+          //       raw: await mainWorksheet.downloadAsCSV()
+          //     }
+          //   }),
+          };
+      } else {
+          return {
+          statusCode: 404,
+          body: JSON.stringify(`Unable to load spreadsheet.`),
+          };
+      }
     } catch (error) {
       console.error('Error fetching Google Doc:', error);
   
@@ -29,4 +34,14 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
         body: JSON.stringify({ error: 'Internal server error' }),
       };
     }
+}
+
+const parseData = (input) => {
+  //TODO ensure input data is valid
+  const worksheetData = input.data.raw.data;
+  const bufferData = Buffer.from(worksheetData);
+  const realData = bufferData.toString();
+  console.log('realData: ', realData);
+  const data: DSVRowArray = csvParse(realData);
+  return data;
 }
