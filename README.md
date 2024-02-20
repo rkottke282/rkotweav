@@ -27,6 +27,10 @@ Then, from the root directory, run:
 
     serverless deploy
 
+To deploy just one function:
+
+    serverless deploy function -f <function_name>
+
 To remove, run:
 
     serverless remove
