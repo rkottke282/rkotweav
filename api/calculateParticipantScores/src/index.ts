@@ -12,14 +12,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
       if (event) {
           return {
           statusCode: 200,
-          body: JSON.stringify({outcome: "success"})
-          //   body: JSON.stringify({
-          //     title: spreadsheet.title,
-          //     data: {
-          //       format: 'CSV',
-          //       raw: await mainWorksheet.downloadAsCSV()
-          //     }
-          //   }),
+          body: JSON.stringify(scores)
           };
       } else {
           return {
