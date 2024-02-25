@@ -2,10 +2,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, Context } from 'aws-lambda';
 import SpreadSheetExample from '../test/spreadsheetExample.json';
 import { DSVRowArray, csvParse } from 'd3';
+import { calculateScores } from './scoring';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
-    const data: DSVRowArray = parseData(JSON.parse(SpreadSheetExample.body)); //replace this with 'event' when ready to go
-    console.log('data: ', data.columns);
+    const data: DSVRowArray = parseData(event); //replace this with 'event' when ready to go
+    const scores = calculateScores(data);
     //TODO: parse columns  - should be 'Questions' 'Answers' then n. participants
     try {
       if (event) {
@@ -36,12 +37,11 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     }
 }
 
-const parseData = (input) => {
-  //TODO ensure input data is valid
+export const parseData = (input) => {
+  //TODO: ensure input data is valid
   const worksheetData = input.data.raw.data;
   const bufferData = Buffer.from(worksheetData);
   const realData = bufferData.toString();
-  console.log('realData: ', realData);
   const data: DSVRowArray = csvParse(realData);
   return data;
 }
