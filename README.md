@@ -19,22 +19,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deploying
 
-Serverless is used to deploy the backend lambdas.  To deploy first cd into the directory and run:
+Currently this application is manually deployed (I know, I know, I'm sorry...).
 
-    npm run build
+Services:
+    - getGoogleDoc -> create/update lambda.  
+      - includes two environment variables.
+        -  `GOOGLE_PRIVATE_KEY`: find in parameter store
+        -  `GOOGLE_SERVICE_ACCOUNT_EMAIL`: rkotweav-propbets-backend@propbets.iam.gserviceaccount.com
 
-Then, from the root directory, run:
-
-    serverless deploy
-
-To deploy just one function:
-
-    serverless deploy function -f <function_name>
-
-To remove, run:
-
-    serverless remove
-
-To test, run:
-
-    serverless invoke --function getGoogleDoc --path api/getGoogleDoc/test/sample.json
+API:
+    - HTTP API via AWS API Gateway, manually configured: https://di9xmpy8a7.execute-api.us-east-1.amazonaws.com

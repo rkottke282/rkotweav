@@ -1,6 +1,5 @@
 
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, Context } from 'aws-lambda';
-import SpreadSheetExample from '../test/spreadsheetExample.json';
 import { DSVRowArray, csvParse } from 'd3';
 import { calculateScores } from './scoring';
 

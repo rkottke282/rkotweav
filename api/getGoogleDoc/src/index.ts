@@ -8,14 +8,15 @@ import { GoogleSpreadsheet, type GoogleSpreadsheetWorksheet } from 'google-sprea
 // Set up Google API credentials
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
   try {
-    const docId: string = event["docId"]; 
+    const docId: string = event["pathParameters"]["id"]; 
     console.trace(`Retrieving doc with id: ${docId}`);
+    console.trace('Event: ', event);
     // Fetch Google Doc content
     const auth: JWT = getAuth();
     let spreadsheet;
     try {
       spreadsheet = new GoogleSpreadsheet(`${docId}`, auth);
-      await spreadsheet.loadInfo(); 
+      await spreadsheet.loadInfo();   
     } catch (err) {
       console.error(`Error retrieving spreadsheet: ${err}`);
     }
