@@ -1,0 +1,75 @@
+// import { parse } from "csv-parse/.";
+
+// //[
+// //     [
+// //       'Questions',   'Answers',
+// //       'Answer Type', 'Mike',
+// //       'Aly',         'Kaeli ',
+// //       'Stephen',     'Kyle',
+// //       'Reed',        'Dave',
+// //       'Al',          'Christie',
+// //       'Lauren',      'Sarah K',
+// //       'Shelby ',     'Sarah',
+// //       'Adam'
+// //     ],
+// //     [
+// //       'Time for Reba McEntire\nto sing the anthem? (Over/Under 90.5 seconds)',
+// //       'Over',
+// //       '',
+// //       'Under',
+// //       'Under',
+// //       'over',
+// //       'over',
+// //       '',
+// //       'under',
+// //       'under',
+// //       'Over',
+// //       'under',
+// //       '',
+// //       '',
+// //       'under',
+// //       'under',
+// //       'under'
+// //     ],
+// // ]
+
+// // first row is dictionary creation
+//     // names to positions
+//     // positions to points
+// // subsequent rows
+//     // keep track of possible points
+//     // evaluate 'Answer Type' (dont have to do this yet)
+//     // save 'Answer'
+//     // iterate positionPoint dictionary with number of points
+// // return names and positionPoints
+
+// export const score = (data) => {
+//     const positionMap = {};
+//     const scoresMap = {};
+//     // Initialize the parser
+//     const parser = parse({
+//         delimiter: ','
+//     });
+//     parser.on('readable', async function(){
+//         let record;
+//         while ((record = parser.read()) !== null) {
+            
+//           records.push(record);
+//         }
+//       });
+//     parser.on('error', function(err){
+//         console.error(err.message);
+//     });
+//     // Test that the parsed records matched the expected records
+//     parser.on('end', function(){
+//         console.log('records: ', records);
+//     });
+//     // Write data to the stream
+//     await parser.write(realData);
+//     // Close the readable stream
+//     parser.end();
+//     return {
+//         records
+//     };
+//   }
+// }

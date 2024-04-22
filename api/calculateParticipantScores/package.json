@@ -6,13 +6,15 @@
   "scripts": {
     "test": "jest",
     "build": "npx tsc",
-    "zip": "cd dist && zip -r ../output.zip ."
+    "zip": "cd dist && zip -r ../output.zip .",
+    "post-build": "cp package.json dist/ && cd dist && npm install --omit=dev",
+    "build:install:zip": "npm run build && npm run post-build && npm run zip"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aws-lambda": "^1.0.7",
-    "d3": "^7.8.5"
+    "csv-parse": "^5.5.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",

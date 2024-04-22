@@ -1,7 +1,6 @@
-import { DSVRowArray } from "d3";
 
-export const calculateScores = (data: DSVRowArray): Object => {
-    const scores = initScores(data.columns);
+export const score = (data): Object => {
+    const scores = initScores(data);
     let pointsAwarded = 0;
     let pointsPossible = 0;
     data.forEach(row => {
@@ -26,13 +25,14 @@ const scoreRow = (scores, propRow) => {
     return scores;
 }
 
-const initScores = (columnNames: Array<string>): Object => {
+export const initScores = (data): Object => {
     const scores = {};
-    columnNames.forEach(colHeader => {
-        if ((colHeader !== "Questions")
-             && (colHeader !== "Answers")
-             && (colHeader !== "Answer Type"))
-             scores[colHeader] = 0;
+    const aRecord = data[0]; 
+    Object.keys(aRecord).forEach(key => {
+        if ((key !== "Questions")
+             && (key !== "Answers")
+             && (key !== "Answer Type"))
+             scores[key] = 0;
     });
     return scores;
 }
