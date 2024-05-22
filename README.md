@@ -15,9 +15,19 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Deploying
+
+To deploy the UI, first build a deployable version of the UI (we use a static hosted version cause i'm not paying for a backend server).  Build via:
+
+```bash
+npm run build
+```
+
+Take the output which you can find in the 'dist' folder and place it in the S3 bucket.
+
 ## API
 
-## Deploying
+### Deploying
 
 Currently this application is manually deployed (I know, I know, I'm sorry...).
 
