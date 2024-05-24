@@ -1,6 +1,21 @@
 import React, { useState, useEffect, ReactPropTypes } from 'react';
+import { getDocumentContent } from './api';
 const GoogleDocReader = (props: any) => {
   const [docContent, setDocContent] = useState('');
+
+  const getContentAndCalculateScores = async (docId: string) => {
+    const content = await getDocumentContent(docId);
+    if (content) {
+      setDocContent(content);
+      const scores = await getScores(content);
+    }
+  }
+
+  useEffect(() => {
+    if (props.googleDocId) {
+      getContentAndCalculateScores(props.googleDocId);
+    }
+  }, [props.googleDocId]);
 
   //WHEN props.googleDocId is rendered, make the calls!
   // useEffect(() => {
@@ -21,7 +36,10 @@ const GoogleDocReader = (props: any) => {
   return (
     <div>
       <h1>Google Doc Content</h1>
-      <pre>{props.googleDocId}</pre>
+      {docContent ? 
+        <h2>Successfully retrieved Google document! Calculating scores...</h2> : 
+        <h2>Failed to retrieve Google document</h2>
+      }
     </div>
   );
 };
