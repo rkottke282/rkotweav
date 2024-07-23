@@ -33,5 +33,9 @@
           participantScores: [
             { participant: <string>
                 score: <number> }, ...
+          ],
+          praticipantRankings: [
+            { participant: <string>,
+                rank: <number> }, ...
           ]
         }

@@ -5,6 +5,7 @@ type TScores = {
   pointsAwarded?: number
   pointsPossible?: number
   participantScores?: any
+  rankings?: any
 }
 
 const GoogleDocReader = (props: any) => {
@@ -24,9 +25,18 @@ const GoogleDocReader = (props: any) => {
 
   const renderScores = () => {
     if (scores.participantScores){
+      const rankings = Object.keys(scores.rankings).sort();
       return (
         <div>
-          {Object.keys(scores.participantScores).map((participant, idx) => <h3 key={idx}>{participant}: {String(scores.participantScores[participant])}</h3>)}
+          {/* {Object.keys(scores.participantScores).map((participant, idx) => 
+          <h3 key={idx}>{participant}: {String(scores.participantScores[participant])}</h3>)}
+           */}
+          {rankings.map((ranking, idx1) => 
+            scores.rankings[ranking].map((participant: string) => 
+              <h3 key={participant}>{ranking}: {participant} ({scores.participantScores[participant]} pts.)</h3>
+            )
+          
+          )}
           <h4>Progress: {scores.pointsAwarded} / {scores.pointsPossible}</h4>
         </div>
       )

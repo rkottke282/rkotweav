@@ -1,6 +1,6 @@
 
 import { APIGatewayProxyEvent, APIGatewayProxyHandler } from 'aws-lambda';
-import { score } from './scorer';
+import { rankParticipantScores, score } from './scorer';
 import { convertToJson } from './parser';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
@@ -9,8 +9,8 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
         const rawInputData = JSON.parse(event.body).data.raw.data;
         const data = await convertToJson(rawInputData);
         console.log('data: ', data);
-        const scores = score(data);
-        
+        const scores: any = score(data);
+        scores['rankings'] = rankParticipantScores(scores.participantScores)
         return {
           statusCode: 200,
           body: JSON.stringify(scores)

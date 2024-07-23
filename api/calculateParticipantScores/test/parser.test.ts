@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 import { convertToCSVString, convertToJson } from "../src/parser";
-import SpreadsheetExample from "./spreadsheetExample.json";
+import * as SpreadsheetExample from "./spreadsheetExample.json";
 
 describe('convertToCSVString', () => {
     it('should convert buffer to string', async () => {

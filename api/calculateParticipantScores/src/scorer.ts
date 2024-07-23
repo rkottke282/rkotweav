@@ -15,6 +15,27 @@ export const score = (data): Object => {
     };
 }
 
+export const rankParticipantScores = (participantScores): Object => {
+    const participantsByScore = {};
+    Object.keys(participantScores).forEach(x => {
+        const thisParticipantsScore = participantScores[x]
+        if (thisParticipantsScore in participantsByScore) {
+            participantsByScore[thisParticipantsScore] = [...participantsByScore[thisParticipantsScore], x]
+        } else {
+            participantsByScore[thisParticipantsScore] = [x]
+        }
+    })
+
+    let currentRank = 1;
+    const rankings = {};
+    const scores = Object.keys(participantsByScore).sort().reverse();
+    scores.forEach(x => {
+        rankings[currentRank] = participantsByScore[x];
+        currentRank++;
+    });
+    return rankings;
+}
+
 const scoreRow = (scores, propRow) => {
     Object.keys(scores).forEach(participant => {
         // console.log(`scoreing ${participant} and they said ${propRow[participant]} but the answer is ${propRow['Answers']}`);
