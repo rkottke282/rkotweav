@@ -23,7 +23,7 @@ To deploy the UI, first build a deployable version of the UI (we use a static ho
 npm run build
 ```
 
-Take the output which you can find in the 'dist' folder and place it in the S3 bucket.
+Take the output which you can find in the 'out' folder and place all of it's contents in the S3 bucket.
 
 ## API
 
