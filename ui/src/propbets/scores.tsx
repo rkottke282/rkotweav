@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactPropTypes } from 'react';
+import { useState, useEffect } from 'react';
 import { getDocumentContent, getScores } from './api/api';
 
 type TScores = {

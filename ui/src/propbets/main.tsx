@@ -1,7 +1,6 @@
-'use client'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import GoogleDocReader from './scores';
-import "@/app/globals.css";
+// import "@/app/globals.css";
 import Modal from '../components/modal';
 
 
