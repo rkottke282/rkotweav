@@ -1,6 +1,3 @@
-'use client';
-import React, { useState } from 'react';
-
 export type TModalProps = {
     isOpen: boolean,
     closeModal: any,

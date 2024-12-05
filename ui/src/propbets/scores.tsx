@@ -28,7 +28,7 @@ const GoogleDocReader = (props: any) => {
       const rankings = Object.keys(scores.rankings).sort();
       return (
         <div>
-          {rankings.map((ranking, idx1) => 
+          {rankings.map((ranking, _) => 
             scores.rankings[ranking].map((participant: string) => 
               <h3 key={participant}>{ranking}: {participant} <i>({scores.participantScores[participant]} pts.)</i></h3>
             )
