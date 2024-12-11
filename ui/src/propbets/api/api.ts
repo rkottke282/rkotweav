@@ -6,7 +6,8 @@ export const getDocumentContent = async (documentId: string) => {
     }).then(json => {
         if (json.error) return 'error';
         return json;
-    }).catch(error => {
+    }).catch((error) => {
+        console.log('Error: ', error)
         return 'error';
     });
 }
@@ -20,7 +21,8 @@ export const getScores = async (content: object) => {
         }
     ).then(response => {
         return response.json();
-    }).catch(error => {
+    }).catch((error: any) => {
+        console.log('Error: ', error)
         return undefined;
     }); 
 }
