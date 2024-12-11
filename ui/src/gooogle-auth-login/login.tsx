@@ -40,7 +40,8 @@ const Login = () => {
 
     const logOut = () => {
         googleLogout();
-        setProfile(undefined);
+        setProfile(null);
+        setUser(null);
     };
 
     return (
