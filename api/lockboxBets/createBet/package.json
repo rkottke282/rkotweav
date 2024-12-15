@@ -4,7 +4,10 @@
   "description": "create a new lockbox bet",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc",
+    "zip": "cd dist && zip -r ../output.zip .",
+    "post-build": "cp package.json dist/ && cd dist && npm install --omit=dev",
+    "build:install:zip": "npm run build && npm run post-build && npm run zip"
   },
   "author": "",
   "license": "ISC",
