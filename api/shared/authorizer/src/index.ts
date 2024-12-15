@@ -13,6 +13,7 @@ const handler = async (event: APIGatewayRequestAuthorizerEventV2,
             const tokenInfo: TokenInfo = await getTokenInfo(token);
             if (!tokenInfo) throw Error('Failed to retrieve token info');
             if (tokenInfo.aud != CLIENT_ID) throw Error('Incorrect client id');
+            console.log(`Authorized.  Email: ${tokenInfo.email}, Endpoint: ${event.routeKey}`)
             return {
                 isAuthorized: true,
                 context: {
