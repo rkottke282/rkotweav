@@ -38,7 +38,7 @@ Services:
         -  `GOOGLE_PRIVATE_KEY`: find in parameter store
         -  `GOOGLE_SERVICE_ACCOUNT_EMAIL`: rkotweav-propbets-backend@propbets.iam.gserviceaccount.com
     - calculateParticipantScores -> create/update lambda via conosle.
-  - lockboxBets:
+  - shoeboxBets:
   
   
 
