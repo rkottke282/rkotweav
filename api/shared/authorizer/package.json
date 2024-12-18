@@ -1,0 +1,27 @@
+{
+  "name": "authorizer",
+  "version": "1.0.0",
+  "description": "authorizing calls from rkotweav",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "jest",
+    "zip": "cd dist && zip -r ../output.zip .",
+    "post-build": "cp package.json dist/ && cd dist && npm install --omit=dev",
+    "build:install:zip": "npm run build && npm run post-build && npm run zip"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.146",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "google-auth-library": "^9.15.0"
+  }
+}

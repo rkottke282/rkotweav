@@ -1,0 +1,23 @@
+{
+  "name": "createbet",
+  "version": "1.0.0",
+  "description": "create a new shoebox bet",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "zip": "cd dist && zip -r ../output.zip .",
+    "post-build": "cp package.json dist/ && cd dist && npm install --omit=dev",
+    "build:install:zip": "npm run build && npm run post-build && npm run zip"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.146",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "joi": "^17.13.3"
+  }
+}
