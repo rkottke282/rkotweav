@@ -22,8 +22,8 @@ export type shoeboxBet = {
 
 export const shoeboxBetSchema = Joi.object({
     id: Joi.string().length(36).required(),
-    initiator: Joi.string().pattern(new RegExp(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`)).required(),
-    recipient: Joi.string().pattern(new RegExp(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`)).required(),
+    initiator: Joi.string().required(),
+    recipient: Joi.string().required(),
     challenge: Joi.string().required(),
     initiatorStance: Joi.string().required(),
     recipientStance: Joi.string(),
@@ -34,8 +34,8 @@ export const shoeboxBetSchema = Joi.object({
     resolution: Joi.string(), 
     winner: Joi.string(),
     loser: Joi.string(),
-    resolutionProposer: Joi.string().pattern(new RegExp(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`)),
+    resolutionProposer: Joi.string(),
     resolutionProposalTimestamp: Joi.date(),
-    resolutionAccepter: Joi.string().pattern(new RegExp(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`)),
+    resolutionAccepter: Joi.string(),
     resolutionAcceptanceTimestamp: Joi.date()
 })
