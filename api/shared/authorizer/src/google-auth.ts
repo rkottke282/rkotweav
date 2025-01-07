@@ -1,9 +1,9 @@
 import { OAuth2Client, TokenInfo } from "google-auth-library"
 
-export const getTokenInfo = async (token: string): Promise<TokenInfo | undefined> => {
-    const CLIENT_ID_GOOGLE = 'yourGoogleClientId'
+const CLIENT_ID: string = '484680450142-kcatfskg0bfr84cvgkjg3933v4pu96qn.apps.googleusercontent.com';
 
-    const client = new OAuth2Client(CLIENT_ID_GOOGLE)
+export const getTokenInfo = async (token: string): Promise<TokenInfo | undefined> => {
+    const client = new OAuth2Client(CLIENT_ID);
 
     try {
         return await client.getTokenInfo(token);

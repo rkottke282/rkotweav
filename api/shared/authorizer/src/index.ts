@@ -2,8 +2,6 @@ import { APIGatewayEventRequestContextLambdaAuthorizer, APIGatewayEventRequestCo
 import { TokenInfo } from 'google-auth-library';
 import { getTokenInfo } from './google-auth';
 
-const CLIENT_ID: String = '484680450142-kcatfskg0bfr84cvgkjg3933v4pu96qn.apps.googleusercontent.com';
-
 const handler = async (event: APIGatewayRequestAuthorizerEventV2, 
     context: APIGatewayEventRequestContextV2) => {
         try {
@@ -12,7 +10,7 @@ const handler = async (event: APIGatewayRequestAuthorizerEventV2,
             const token: string = identitySource.replace('Bearer ', '');
             const tokenInfo: TokenInfo = await getTokenInfo(token);
             if (!tokenInfo) throw Error('Failed to retrieve token info');
-            if (tokenInfo.aud != CLIENT_ID) throw Error('Incorrect client id');
+            //if (tokenInfo.aud != CLIENT_ID) throw Error('Incorrect client id');
             console.log(`Authorized.  Email: ${tokenInfo.email}, Endpoint: ${event.routeKey}`)
             return {
                 isAuthorized: true,

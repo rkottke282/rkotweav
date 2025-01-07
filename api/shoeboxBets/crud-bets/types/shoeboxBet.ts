@@ -21,13 +21,13 @@ export type shoeboxBet = {
 }
 
 export const shoeboxBetSchema = Joi.object({
-    id: Joi.string().length(36).required(),
+    id: Joi.string().length(36),
     initiator: Joi.string().required(),
     recipient: Joi.string().required(),
     challenge: Joi.string().required(),
     initiatorStance: Joi.string().required(),
-    recipientStance: Joi.string(),
-    wager: Joi.string().required(),
+    recipientStance: Joi.string().required(),
+    wager: Joi.string(),
     initiationTimestamp: Joi.date().required(),
     acceptanceTimestamp: Joi.date(),
     resolutionTimestamp: Joi.date(),
