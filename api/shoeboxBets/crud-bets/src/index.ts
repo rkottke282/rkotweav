@@ -1,12 +1,13 @@
-import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda'
+import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyEventV2, APIGatewayProxyEventV2WithLambdaAuthorizer, APIGatewayEventLambdaAuthorizerContext, APIGatewayAuthorizerEvent, APIGatewayProxyHandlerV2 } from 'aws-lambda'
 import { shoeboxBet, shoeboxBetSchema } from '../types/shoeboxBet';
 import { ValidationResult } from 'joi';
 import { addNew } from './controller';
 
-const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
+const handler: APIGatewayProxyHandlerV2 = async (event: APIGatewayProxyEventV2WithLambdaAuthorizer<any>) => {
     try {
         const email: string = event.requestContext.authorizer.lambda.email;
-        if (event.httpMethod == 'POST') {
+        console.log('received an event: ', event);
+        if (event.routeKey == 'POST /bets') {
             const uuid: string = await addNew(event.body, email);
             return {
                 statusCode: 200,
