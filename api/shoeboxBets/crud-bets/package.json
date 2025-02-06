@@ -17,6 +17,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.741.0",
+    "@aws-sdk/util-dynamodb": "^3.741.0",
     "aws-lambda": "^1.0.7",
     "joi": "^17.13.3",
     "uuid": "^11.0.3"

@@ -2,13 +2,13 @@ import * as Joi from 'joi'
 
 export type shoeboxBet = {
     id: string,
-    initiator: string,
+    initiator?: string,
     recipient: string,
     challenge: string,
     initiatorStance: string,
     recipientStance: string,
     wager: string,
-    initiationTimestamp: Date,
+    initiationTimestamp?: Date,
     acceptanceTimestamp?: Date,
     resolutionTimestamp?: Date,
     resolution?: string,
@@ -22,13 +22,13 @@ export type shoeboxBet = {
 
 export const shoeboxBetSchema = Joi.object({
     id: Joi.string().length(36),
-    initiator: Joi.string().required(),
+    initiator: Joi.string(),
     recipient: Joi.string().required(),
     challenge: Joi.string().required(),
     initiatorStance: Joi.string().required(),
     recipientStance: Joi.string().required(),
     wager: Joi.string(),
-    initiationTimestamp: Joi.date().required(),
+    initiationTimestamp: Joi.date(),
     acceptanceTimestamp: Joi.date(),
     resolutionTimestamp: Joi.date(),
     resolution: Joi.string(), 

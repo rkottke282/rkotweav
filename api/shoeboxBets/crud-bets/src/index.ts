@@ -8,14 +8,15 @@ const handler: APIGatewayProxyHandlerV2 = async (event: APIGatewayProxyEventV2Wi
         const email: string = event.requestContext.authorizer.lambda.email;
         console.log('received an event: ', event);
         if (event.routeKey == 'POST /bets') {
-            const uuid: string = await addNew(event.body, email);
+            const bet: shoeboxBet = await addNew(event.body, email);
             return {
                 statusCode: 200,
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "message": `Bet has been created. UUID: ${await addNew(event.body, email)}`
+                    "message": `Bet has been created. UUID: ${bet.id}`,
+                    "data": bet
                 })
             }
         }
