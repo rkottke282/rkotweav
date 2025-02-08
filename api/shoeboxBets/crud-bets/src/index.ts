@@ -1,7 +1,6 @@
-import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyEventV2, APIGatewayProxyEventV2WithLambdaAuthorizer, APIGatewayEventLambdaAuthorizerContext, APIGatewayAuthorizerEvent, APIGatewayProxyHandlerV2 } from 'aws-lambda'
-import { shoeboxBet, shoeboxBetSchema } from '../types/shoeboxBet';
-import { ValidationResult } from 'joi';
-import { addNew } from './controller';
+import { APIGatewayProxyEventV2WithLambdaAuthorizer, APIGatewayProxyHandlerV2 } from 'aws-lambda'
+import { shoeboxBet } from '../types/shoeboxBet';
+import { addNew, get } from './controller';
 
 const handler: APIGatewayProxyHandlerV2 = async (event: APIGatewayProxyEventV2WithLambdaAuthorizer<any>) => {
     try {
@@ -19,6 +18,19 @@ const handler: APIGatewayProxyHandlerV2 = async (event: APIGatewayProxyEventV2Wi
                     "data": bet
                 })
             }
+        } else if (event.routeKey == 'GET /bets/{id}') {
+            const id = event.pathParameters['id']
+            const bet: shoeboxBet = await get(id);
+            return {
+                statusCode: 200,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "message": `Bet successfully retrieved.`,
+                    "data": bet
+                })
+            }
         }
     } catch (err) {
         if (err.name === 'Forbidden') {
@@ -32,6 +44,13 @@ const handler: APIGatewayProxyHandlerV2 = async (event: APIGatewayProxyEventV2Wi
             return {
                 statusCode: 400,
                 body: JSON.stringify({message: 'Bad Request',
+                    detail: err.message
+                })
+            }
+        } else if (err.message === 'Not Found') {
+            return {
+                statusCode: 404,
+                body: JSON.stringify({message: 'Not Found',
                     detail: err.message
                 })
             }
