@@ -8,16 +8,16 @@ export type shoeboxBet = {
     initiatorStance: string,
     recipientStance?: string,
     wager?: string,
-    initiationTimestamp?: Date,
-    acceptanceTimestamp?: Date,
-    resolutionTimestamp?: Date,
+    initiationTimestamp?: string,
+    acceptanceTimestamp?: string,
+    resolutionTimestamp?: string,
     resolution?: string,
     winner?: string
     loser?: string,
     resolutionProposer?: string,
-    resolutionProposalTimestamp?: Date,
+    resolutionProposalTimestamp?: string,
     resolutionAccepter?: string,
-    resolutionAcceptanceTimestamp?: Date,
+    resolutionAcceptanceTimestamp?: string,
 }
 
 export const shoeboxBetSchema = Joi.object({
@@ -28,14 +28,14 @@ export const shoeboxBetSchema = Joi.object({
     initiatorStance: Joi.string().required(),
     recipientStance: Joi.string(),
     wager: Joi.string(),
-    initiationTimestamp: Joi.date(),
-    acceptanceTimestamp: Joi.date(),
-    resolutionTimestamp: Joi.date(),
+    initiationTimestamp: Joi.string(),
+    acceptanceTimestamp: Joi.string(),
+    resolutionTimestamp: Joi.string(),
     resolution: Joi.string(), 
     winner: Joi.string(),
     loser: Joi.string(),
     resolutionProposer: Joi.string(),
-    resolutionProposalTimestamp: Joi.date(),
+    resolutionProposalTimestamp: Joi.string(),
     resolutionAccepter: Joi.string(),
-    resolutionAcceptanceTimestamp: Joi.date()
+    resolutionAcceptanceTimestamp: Joi.string()
 })

@@ -5,7 +5,7 @@ import { DynamoDBClient, GetItemCommand, GetItemCommandInput, PutItemCommand, Pu
 const client = new DynamoDBClient({region: 'us-east-1'});
 const TABLE = 'shoeboxBets';
 
-export const addBet = async (bet: shoeboxBet): Promise<shoeboxBet> => {
+export const put = async (bet: shoeboxBet): Promise<shoeboxBet> => {
     const input: PutItemCommandInput = {
         TableName: TABLE,
         Item: marshall(bet)
@@ -13,7 +13,7 @@ export const addBet = async (bet: shoeboxBet): Promise<shoeboxBet> => {
     const command = new PutItemCommand(input)
     try {
         const response = await client.send(command);
-        console.log("Item added:", response);
+        console.log("Item added/updated:", response);
       } catch (error) {
         console.error("Error inserting to DynamoDB: ", error);
         throw error;
@@ -21,7 +21,7 @@ export const addBet = async (bet: shoeboxBet): Promise<shoeboxBet> => {
     return bet;
 }
 
-export const getBet = async (id: string): Promise<shoeboxBet> => {
+export const get = async (id: string): Promise<shoeboxBet> => {
     const input: GetItemCommandInput = {
         TableName: TABLE,
         Key: { "id": {
