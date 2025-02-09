@@ -1,12 +1,23 @@
 
+
+
+const skippableRows = [
+    'CONFIRMED TOTAL',
+    'RANK:',
+    'Tie Breaker: Correct answers out of 49 by winner?',
+    'Bonus Tie Breaker: Correct answers out 49 of by loser?',
+]
+
 export const score = (data): Object => {
     const scores = initScores(data);
     let pointsAwarded = 0;
     let pointsPossible = 0;
     data.forEach(row => {
-        pointsPossible++;
-        pointsAwarded += row["Answers"] ? 1 : 0;
-        scoreRow(scores, row);
+        if (!skippableRows.includes(row['Questions'])) {
+            pointsPossible++;
+            pointsAwarded += row["Answers"] ? 1 : 0;
+            scoreRow(scores, row);
+        }
     });
     return {
         pointsAwarded: pointsAwarded,
@@ -39,9 +50,9 @@ export const rankParticipantScores = (participantScores): Object => {
 const scoreRow = (scores, propRow) => {
     Object.keys(scores).forEach(participant => {
         // console.log(`scoreing ${participant} and they said ${propRow[participant]} but the answer is ${propRow['Answers']}`);
-       if (propRow[participant].toUpperCase() === propRow['Answers'].toUpperCase()) {
-            scores[participant] = scores[participant] + 1;
-       }
+        if (propRow[participant].toUpperCase() === propRow['Answers'].toUpperCase()) {
+                scores[participant] = scores[participant] + 1;
+        }
     });
     return scores;
 }

@@ -8,9 +8,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
       if (event) {
         const rawInputData = JSON.parse(event.body).data.raw.data;
         const data = await convertToJson(rawInputData);
-        console.log('data: ', data);
         const scores: any = score(data);
         scores['rankings'] = rankParticipantScores(scores.participantScores)
+        console.log('scores:', scores)
         return {
           statusCode: 200,
           body: JSON.stringify(scores)

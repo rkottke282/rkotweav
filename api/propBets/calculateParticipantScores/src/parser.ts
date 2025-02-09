@@ -12,5 +12,9 @@ export const convertToJson = async (rawInputData: any) => {
         columns: true,
         skip_empty_lines: true
     });
+    console.log('records', records)
+    records.forEach(element => {
+        delete element['']
+    });
     return records;
 }
