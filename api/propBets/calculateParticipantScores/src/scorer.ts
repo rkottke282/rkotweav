@@ -26,6 +26,10 @@ export const score = (data): Object => {
     };
 }
 
+function sorter(a, b){
+    return a - b;
+  }
+
 export const rankParticipantScores = (participantScores): Object => {
     const participantsByScore = {};
     Object.keys(participantScores).forEach(x => {
@@ -39,7 +43,7 @@ export const rankParticipantScores = (participantScores): Object => {
 
     let currentRank = 1;
     const rankings = {};
-    const scores = Object.keys(participantsByScore).sort().reverse();
+    const scores = Object.keys(participantsByScore).sort(sorter).reverse();
     scores.forEach(x => {
         rankings[currentRank] = participantsByScore[x];
         currentRank++;
@@ -50,7 +54,8 @@ export const rankParticipantScores = (participantScores): Object => {
 const scoreRow = (scores, propRow) => {
     Object.keys(scores).forEach(participant => {
         // console.log(`scoreing ${participant} and they said ${propRow[participant]} but the answer is ${propRow['Answers']}`);
-        if (propRow[participant].toUpperCase() === propRow['Answers'].toUpperCase()) {
+        if (propRow[participant] &&
+            propRow[participant].toUpperCase() === propRow['Answers'].toUpperCase()) {
                 scores[participant] = scores[participant] + 1;
         }
     });

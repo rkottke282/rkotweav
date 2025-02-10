@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GoogleDocReader from './scores';
 // import "@/app/globals.css";
 import Modal from '../components/modal';
@@ -31,6 +31,16 @@ const PropBets = () => {
   const [docIdInput, setDocIdInput] = useState('');
   const [docId, setDocId] = useState('');
   const [isInstructionMode, setInstructionMode] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const [key, value] of urlParams.entries()) {
+      if (key === 'id')
+        setDocId(value);
+    }
+  }, []);
+
+  
   const initiateScoreCalculation = () => {
     setDocId(docIdInput);
     setDocIdInput('');
@@ -73,8 +83,10 @@ const PropBets = () => {
           {
             docId && 
             <div>
-              <GoogleDocReader 
-                googleDocId={docId}/>
+              <div>
+                <GoogleDocReader 
+                  googleDocId={docId}/>
+              </div>
             </div>
           }
         </div>   
