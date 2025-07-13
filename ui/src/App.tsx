@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Splash from "./splash";
 import PropBets from "./propbets/main";
 import ShoeBoxBets from "./shoeboxbets/main"
+import Shareable from "./shareable/main";
+import List from "./shareable/list";
+import Note from "./shareable/note";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Footer from "./footer";
 import WithUserContext from "./gooogle-auth-login/user-context";
@@ -19,6 +22,9 @@ const App = () => {
               <Route path="/" element={<Splash />} />
               <Route path="/propbets" element={<PropBets />} />
               <Route path="/shoeboxbets" element={<ShoeBoxBets />} />
+              <Route path="/shareables" element={<Shareable />} />
+              <Route path="/shareables/list/:suffix" element={<List />} />
+              <Route path="/shareables/note/:suffix" element={<Note />} />
             </Routes>
           </Router>
           <Footer/>

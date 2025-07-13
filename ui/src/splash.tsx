@@ -1,3 +1,4 @@
+import { ButtonPair } from "./components/button-pair";
 
 const Splash = () => {
 
@@ -14,35 +15,13 @@ const Splash = () => {
         />
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left">
-        <a
-          href="https://github.com/rkottke282"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Github
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            {`A bunch of stuff I've made`}
-          </p>
-        </a>
-
-        <a
-          href="https://www.linkedin.com/in/reed-kottke-weaver/"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold lg:text-right`}>
-            LinkedIn{" "}
-          </h2>
-          <p className={`m-0 text-sm opacity-50 lg:text-right`}>
-            The professional side
-          </p>
-        </a>
-      </div>
+      <ButtonPair
+        buttonOneLink="https://github.com/rkottke282"
+        buttonOneText="Github"
+        buttonOneDescription="A bunch of stuff I've made"
+        buttonTwoLink="https://www.linkedin.com/in/reed-kottke-weaver/"
+        buttonTwoText="LinkedIn"
+        buttownTwoDescription="The professional side" />
     </main>
   )
 }
